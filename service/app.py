@@ -1,14 +1,33 @@
 import streamlit as st
 
 st.title("SafePrompt")
-st.caption("1주차 화면 테스트용입니다. 예시 문장: 김민수입니다.")
+st.caption("1주차 더미 탐지 화면")
 
 text = st.text_area("문장을 입력하세요")
+
+demo_values = {
+    "김민수": "PERSON",
+    "010-0000-0000": "PHONE",
+    "minsu@example.com": "EMAIL",
+}
 
 if st.button("개인정보 확인"):
     if not text.strip():
         st.warning("문장을 입력해 주세요.")
-    elif "김민수" in text:
-        st.write("가상 탐지 결과: 김민수 (PERSON)")
     else:
-        st.info("테스트하려면 '김민수입니다.'를 입력해 주세요.")
+        spans = []
+
+        for value, label in demo_values.items():
+            start = text.find(value)
+            if start >= 0:
+                spans.append({
+                    "value": value,
+                    "label": label,
+                    "start": start,
+                    "end": start + len(value),
+                })
+
+        if spans:
+            st.table(spans)
+        else:
+            st.info("입력에서 등록된 예시 값을 찾지 못했어요.")
