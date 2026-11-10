@@ -1,7 +1,8 @@
 import streamlit as st
 
 st.title("SafePrompt")
-st.caption("1주차 더미 탐지 화면")
+st.caption("1주차 더미 탐지 화면입니다. 아래 예시를 입력하고 ‘개인정보 확인’을 눌러 보세요.")
+st.write("김민수입니다. 전화번호는 010-0000-0000이고 이메일은 minsu@example.com입니다.")
 
 text = st.text_area("문장을 입력하세요")
 
