@@ -1,0 +1,18 @@
+{"id": "all_basic", "text": "이름: 김하늘, 전화번호: 010-0000-0000, 이메일: haneul@example.com", "expected": [{"start": 4, "end": 7, "label": "NAME", "text": "김하늘"}, {"start": 15, "end": 28, "label": "PHONE", "text": "010-0000-0000"}, {"start": 35, "end": 53, "label": "EMAIL", "text": "haneul@example.com"}], "note": "세 요소 기본 예시"}
+{"id": "name_only", "text": "담당자는 이다온입니다.", "expected": [{"start": 5, "end": 8, "label": "NAME", "text": "이다온"}], "note": "조사·서술어 제외"}
+{"id": "phone_only", "text": "전화번호: 010-0000-0000", "expected": [{"start": 6, "end": 19, "label": "PHONE", "text": "010-0000-0000"}], "note": "전화번호 단독"}
+{"id": "email_only", "text": "이메일: user@example.com", "expected": [{"start": 5, "end": 21, "label": "EMAIL", "text": "user@example.com"}], "note": "이메일 단독"}
+{"id": "title", "text": "박서준 님에게 전달해 주세요.", "expected": [{"start": 0, "end": 3, "label": "NAME", "text": "박서준"}], "note": "호칭 님 제외"}
+{"id": "compound", "text": "담당자: 남궁하린", "expected": [{"start": 5, "end": 9, "label": "NAME", "text": "남궁하린"}], "note": "복성 포함 네 글자 이름"}
+{"id": "short_name", "text": "참석자 이름: 한결", "expected": [{"start": 8, "end": 10, "label": "NAME", "text": "한결"}], "note": "문맥상 이름으로 명시한 두 글자"}
+{"id": "english_name", "text": "Contact name: Alex Morgan", "expected": [{"start": 14, "end": 25, "label": "NAME", "text": "Alex Morgan"}], "note": "영문 이름의 내부 공백 포함"}
+{"id": "repeat_name", "text": "김하늘에게 전달하고 김하늘의 답변을 기다립니다.", "expected": [{"start": 0, "end": 3, "label": "NAME", "text": "김하늘"}, {"start": 11, "end": 14, "label": "NAME", "text": "김하늘"}], "note": "동일 이름도 위치별로 별도 Span"}
+{"id": "multi", "text": "김하늘: 010-0000-0000, haneul@example.com / 이다온: 010-0000-0001, daon@example.com", "expected": [{"start": 0, "end": 3, "label": "NAME", "text": "김하늘"}, {"start": 5, "end": 18, "label": "PHONE", "text": "010-0000-0000"}, {"start": 20, "end": 38, "label": "EMAIL", "text": "haneul@example.com"}, {"start": 41, "end": 44, "label": "NAME", "text": "이다온"}, {"start": 46, "end": 59, "label": "PHONE", "text": "010-0000-0001"}, {"start": 61, "end": 77, "label": "EMAIL", "text": "daon@example.com"}], "note": "두 사람의 세 요소. 소유 관계 추론은 범위 밖"}
+{"id": "newline", "text": "이름: 이다온\n전화번호: 010-0000-0001\n이메일: daon@example.com", "expected": [{"start": 4, "end": 7, "label": "NAME", "text": "이다온"}, {"start": 14, "end": 27, "label": "PHONE", "text": "010-0000-0001"}, {"start": 33, "end": 49, "label": "EMAIL", "text": "daon@example.com"}], "note": "줄바꿈 원문 보존"}
+{"id": "emoji", "text": "🙂 김하늘 / 010-0000-0000 / haneul@example.com", "expected": [{"start": 2, "end": 5, "label": "NAME", "text": "김하늘"}, {"start": 8, "end": 21, "label": "PHONE", "text": "010-0000-0000"}, {"start": 24, "end": 42, "label": "EMAIL", "text": "haneul@example.com"}], "note": "이모지 앞부분의 Python str 좌표"}
+{"id": "punct", "text": "[김하늘] (010-0000-0000) <haneul@example.com>.", "expected": [{"start": 1, "end": 4, "label": "NAME", "text": "김하늘"}, {"start": 7, "end": 20, "label": "PHONE", "text": "010-0000-0000"}, {"start": 23, "end": 41, "label": "EMAIL", "text": "haneul@example.com"}], "note": "둘러싼 기호 및 마침표 제외"}
+{"id": "ordinary_words", "text": "하늘이 맑고 바다가 푸릅니다.", "expected": [], "note": "이름처럼 보이는 일반명사는 이 문맥에서 NAME 아님"}
+{"id": "org_place", "text": "부산대학교에서 서울역으로 이동합니다.", "expected": [], "note": "기관·장소는 세 대상 label에서 제외"}
+{"id": "none", "text": "회의는 오후 3시, 회의실은 204호입니다.", "expected": [], "note": "숫자를 모두 전화번호로 보지 않음"}
+{"id": "empty", "text": "", "expected": [], "note": "빈 문자열"}
+{"id": "partial", "text": "이름: 김하늘 / 이메일: haneul@example.com", "expected": [{"start": 4, "end": 7, "label": "NAME", "text": "김하늘"}, {"start": 15, "end": 33, "label": "EMAIL", "text": "haneul@example.com"}], "note": "전화번호가 없어도 존재하는 두 요소만 기록"}
